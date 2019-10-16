@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 class Mergeeeta:
@@ -6,7 +8,7 @@ class Mergeeeta:
         print("gheu")
 
     def read_and_merge_eta(self):
-        muondata = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/ephimassdi7.txt', delimiter=';', header=None)
+        muondata = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/ephimassdi7.txt', delimiter=';', header=None)
         # print (muondata)
 
         # muondata.to_csv('/home/dgrfi/MEGA/dimuon/data/gheu.txt', header=None, columns=[0], index=None)
@@ -18,8 +20,19 @@ class Mergeeeta:
             rowcount = rowcount + 1
             muoneta.loc[rowcount] = row[2]
             rowcount = rowcount + 1
-        muoneta.to_csv('/home/dgrfi/MEGA/dimuon/data/gheu.txt',index=None)
+        muoneta.to_csv('/home/bhaduri/MEGA/dimuon/data/gheu.txt',index=None)
 
     def plot_eta(self):
-        muoneta = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/gheu.txt')
-        muoneta.plot
+        muoneta = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/gheu.txt')
+        muoneta.reset_index().plot(kind='scatter', x='index', y='eta')
+        plt.show()
+        # muoneta.plot(x=muoneta.index, y='eta', kind='scatter')
+        # plt.xticks(muoneta['eta'], muoneta.index.values)  # location, labels
+        # plt.plot(muoneta['eta'], type='scatter')
+        # plt.show()
+        # plt.plot([1, 2, 3, 4])
+        # plt.ylabel('y-axis')
+        # plt.xlabel('x-axis')
+        # plt.show()
+
+
