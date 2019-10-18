@@ -39,4 +39,10 @@ class Mergeeeta:
         # plt.xlabel('x-axis')
         # plt.show()
 
-
+    def divide_eta(self):
+        eta7tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/eta7H.csv')
+        eta8tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/eta8H.csv')
+        # eta7tev['gheu'] = pd.qcut(eta7tev['eta'], q=5, labels=['a', 'b', 'c', 'd', 'e'])
+        print(eta7tev.describe())
+        eta7tev['partitions'] = pd.qcut(eta7tev['eta'], q=5)
+        print(eta7tev['partitions'].value_counts())
