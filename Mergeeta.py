@@ -20,13 +20,14 @@ class Mergeeeta:
             rowcount = rowcount + 1
             muoneta.loc[rowcount] = row[2]
             rowcount = rowcount + 1
-        muoneta.to_csv('/home/dgrfi/MEGA/dimuon/data/gheu8.txt',index=None)
+        muoneta.to_csv('/home/dgrfi/MEGA/dimuon/data/gheu8.txt', index=None)
 
     def plot_eta(self):
-        muoneta = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/gheu8.txt')
+        muoneta = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/gheu.txt')
         print(muoneta)
         # muonetawithindex = muoneta.reset_index()
         muoneta.hist(bins=20)
+        plt.title('7TEV 20 bins')
         plt.show()
         # muoneta.reset_index().plot(kind='scatter', x='index', y='eta')
         # plt.show()
@@ -40,9 +41,21 @@ class Mergeeeta:
         # plt.show()
 
     def divide_eta(self):
-        eta7tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/eta7H.csv')
-        eta8tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/eta8H.csv')
+        eta7tev = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/eta7H.csv')
+        eta8tev = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/eta8H.csv')
         # eta7tev['gheu'] = pd.qcut(eta7tev['eta'], q=5, labels=['a', 'b', 'c', 'd', 'e'])
-        print(eta7tev.describe())
-        eta7tev['partitions'] = pd.qcut(eta7tev['eta'], q=5)
-        print(eta7tev['partitions'].value_counts())
+        eta_labels = ['a', 'b', 'c', 'd', 'e']
+        print(pd.cut(eta7tev['eta'], bins=5, precision=5))
+        eta7tev['partitions'] = pd.cut(eta7tev['eta'], bins=5, precision=5, labels=eta_labels)
+
+        for label in eta_labels:
+            eta7tev[(eta7tev['partitions'] == label)]['eta'].to_csv(
+                '/home/bhaduri/MEGA/dimuon/data/eta7part/eta7' + label + '.csv',
+                index=None, header=False)
+        eta7tev['partitions'] = pd.cut(eta7tev['eta'], bins=5, precision=5, labels=eta_labels)
+        print(pd.cut(eta8tev['eta'], bins=5, precision=5))
+        eta8tev['partitions'] = pd.cut(eta8tev['eta'], bins=5, precision=5, labels=eta_labels)
+        for label in eta_labels:
+            eta8tev[(eta8tev['partitions'] == label)]['eta'].to_csv(
+                '/home/bhaduri/MEGA/dimuon/data/eta8part/eta8' + label + '.csv',
+                index=None, header=False)
