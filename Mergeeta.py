@@ -6,6 +6,16 @@ import numpy as np
 class Mergeeeta:
     def __init__(self):
         print("gheu")
+    def extract_eta_phi(self):
+        muondata8 = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/ephimassdi8.txt', delimiter=';', header=None)
+        muondata8s = muondata8.sort_values(by=[0])
+        # print(muondata8s.head())
+        muondata8s[0].to_csv('/home/dgrfi/MEGA/dimuon/data/sorted/eta1.txt', index=None, header=False)
+        muondata8s[1].to_csv('/home/dgrfi/MEGA/dimuon/data/sorted/eta2.txt', index=None, header=False)
+        muondata8s[2].to_csv('/home/dgrfi/MEGA/dimuon/data/sorted/phi1.txt', index=None, header=False)
+        muondata8s[3].to_csv('/home/dgrfi/MEGA/dimuon/data/sorted/phi2.txt', index=None, header=False)
+
+
 
     def read_and_merge_eta(self):
         muondata = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/ephimassdi8.txt', delimiter=';', header=None)
@@ -85,7 +95,7 @@ class Mergeeeta:
                 '/home/bhaduri/MEGA/dimuon/data/eta8part/eta8' + label + '.csv',
                 index=None, header=False)
 
-    def divide_phi(self):
+    def divide_phi_by_eta(self):
         phi7tev = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/phi7H.csv')
         phi8tev = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/phi8H.csv')
         # eta7tev['gheu'] = pd.qcut(eta7tev['eta'], q=5, labels=['a', 'b', 'c', 'd', 'e'])
@@ -103,3 +113,35 @@ class Mergeeeta:
             phi8tev[(phi8tev['partitions'] == label)]['phi'].to_csv(
                 '/home/bhaduri/MEGA/dimuon/data/phi8part/phi8' + label + '.csv',
                 index=None, header=False)
+
+    def sort_divide_phi_by_eta(self):
+        phi7tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/merged/phi7H.csv')
+        phi8tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/merged/phi8H.csv')
+
+        phi_labels = ['a', 'b', 'c', 'd', 'e']
+        # print(pd.cut(phi7tev['eta'], bins=5, precision=5))
+        phi7tev['partitions'] = pd.cut(phi7tev['eta'], bins=5, precision=5, labels=phi_labels)
+        for label in phi_labels:
+            phi7tev_part = phi7tev[(phi7tev['partitions'] == label)]
+            phi7tev_part_sorted_by_phi = phi7tev_part.sort_values(by=['phi'])
+            print(phi7tev_part_sorted_by_phi)
+            phi7tev_part_sorted_by_phi['phi'].to_csv(
+                '/home/dgrfi/MEGA/dimuon/data/sorted/phi7' + label + '.txt',
+                index=None, header=False)
+            phi7tev_part_sorted_by_phi['eta'].to_csv(
+                '/home/dgrfi/MEGA/dimuon/data/sorted/eta7' + label + '.txt',
+                index=None, header=False)
+
+        phi8tev['partitions'] = pd.cut(phi8tev['eta'], bins=5, precision=5, labels=phi_labels)
+        for label in phi_labels:
+            phi8tev_part = phi8tev[(phi8tev['partitions'] == label)]
+            phi8tev_part_sorted_by_phi = phi8tev_part.sort_values(by=['phi'])
+            print(phi8tev_part_sorted_by_phi)
+            phi8tev_part_sorted_by_phi['phi'].to_csv(
+                '/home/dgrfi/MEGA/dimuon/data/sorted/phi8' + label + '.txt',
+                index=None, header=False)
+            phi8tev_part_sorted_by_phi['eta'].to_csv(
+                '/home/dgrfi/MEGA/dimuon/data/sorted/eta8' + label + '.txt',
+                index=None, header=False)
+
+
