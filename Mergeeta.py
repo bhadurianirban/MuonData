@@ -39,9 +39,14 @@ class Mergeeeta:
             # print(muonetaphi['phi'].loc[rowcount])
             rowcount = rowcount + 1
 
-
         # print(muonetaphi)
         muonetaphi.to_csv('/home/dgrfi/MEGA/dimuon/data/phi7H.csv', index=None)
+
+    def save_phi_for_corr_eta(self):
+        muonetaphi7 = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/phi7H.csv')
+        muonetaphi8 = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/phi8H.csv')
+        muonetaphi7['phi'].to_csv('/home/bhaduri/MEGA/dimuon/data/phi7.csv', index=None, header=False)
+        muonetaphi8['phi'].to_csv('/home/bhaduri/MEGA/dimuon/data/phi8.csv', index=None, header=False)
 
     def plot_eta(self):
         muoneta = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/gheu.txt')
@@ -81,20 +86,20 @@ class Mergeeeta:
                 index=None, header=False)
 
     def divide_phi(self):
-        phi7tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/phi7H.csv')
-        phi8tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/phi8H.csv')
+        phi7tev = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/phi7H.csv')
+        phi8tev = pd.read_csv('/home/bhaduri/MEGA/dimuon/data/phi8H.csv')
         # eta7tev['gheu'] = pd.qcut(eta7tev['eta'], q=5, labels=['a', 'b', 'c', 'd', 'e'])
         phi_labels = ['a', 'b', 'c', 'd', 'e']
-        print(pd.cut(phi7tev['phi'], bins=5, precision=5))
-        phi7tev['partitions'] = pd.cut(phi7tev['phi'], bins=5, precision=5, labels=phi_labels)
+        print(pd.cut(phi7tev['eta'], bins=5, precision=5))
+        phi7tev['partitions'] = pd.cut(phi7tev['eta'], bins=5, precision=5, labels=phi_labels)
         for label in phi_labels:
             phi7tev[(phi7tev['partitions'] == label)]['phi'].to_csv(
-                '/home/dgrfi/MEGA/dimuon/data/phi7part/phi7' + label + '.csv',
+                '/home/bhaduri/MEGA/dimuon/data/phi7part/phi7' + label + '.csv',
                 index=None, header=False)
 
-        print(pd.cut(phi8tev['phi'], bins=5, precision=5))
-        phi8tev['partitions'] = pd.cut(phi8tev['phi'], bins=5, precision=5, labels=phi_labels)
+        print(pd.cut(phi8tev['eta'], bins=5, precision=5))
+        phi8tev['partitions'] = pd.cut(phi8tev['eta'], bins=5, precision=5, labels=phi_labels)
         for label in phi_labels:
             phi8tev[(phi8tev['partitions'] == label)]['phi'].to_csv(
-                '/home/dgrfi/MEGA/dimuon/data/phi8part/phi8' + label + '.csv',
+                '/home/bhaduri/MEGA/dimuon/data/phi8part/phi8' + label + '.csv',
                 index=None, header=False)
