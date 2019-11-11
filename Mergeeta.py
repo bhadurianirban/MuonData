@@ -153,40 +153,48 @@ class Mergeeeta:
     def sort_shuffle_divide_phi_by_eta(self):
         phi7tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/merged/phi7H.csv')
         phi8tev = pd.read_csv('/home/dgrfi/MEGA/dimuon/data/merged/phi8H.csv')
-
+        total_shuff_count = 5
         phi_labels = ['a', 'b', 'c', 'd', 'e']
         # print(pd.cut(phi7tev['eta'], bins=5, precision=5))
         phi7tev['partitions'] = pd.cut(phi7tev['eta'], bins=5, precision=5, labels=phi_labels)
         for label in phi_labels:
             phi7tev_part = phi7tev[(phi7tev['partitions'] == label)]
+            print("7TEV part : " + label)
             phi7tev_part_shuffled = phi7tev_part.sample(frac=1)
-            print(phi7tev_part)
-            print(phi7tev_part_shuffled)
+            for shuff_counter in range(total_shuff_count):
+                print("Shuffling 7TEV shuffle number : "+str(shuff_counter))
+                phi7tev_part_shuffled = phi7tev_part_shuffled.sample(frac=1)
+
+            # print(phi7tev_part_shuffled)
             phi7tev_part_shuffled['phi'].to_csv(
-                    '/home/dgrfi/MEGA/dimuon/data/shuffled/phi/phi7' + label + '.txt',
+                    '/home/dgrfi/MEGA/dimuon/data/shuffled/phi/shuffphi7' + label + '.csv',
                     index=None, header=False)
             phi7tev_part_shuffled['eta'].to_csv(
-                    '/home/dgrfi/MEGA/dimuon/data/shuffled/eta/eta7' + label + '.txt',
+                    '/home/dgrfi/MEGA/dimuon/data/shuffled/eta/shuffeta7' + label + '.csv',
                     index=None, header=False)
 
         phi8tev['partitions'] = pd.cut(phi8tev['eta'], bins=5, precision=5, labels=phi_labels)
         for label in phi_labels:
             phi8tev_part = phi7tev[(phi8tev['partitions'] == label)]
+            print("8TEV part : " + label)
             phi8tev_part_shuffled = phi8tev_part.sample(frac=1)
-            print(phi8tev_part)
-            print(phi8tev_part_shuffled)
+            for shuff_counter in range(total_shuff_count):
+                print("Shuffling 8TEV shuffle number : "+str(shuff_counter))
+                phi8tev_part_shuffled = phi8tev_part_shuffled.sample(frac=1)
+            # print(phi8tev_part)
+            # print(phi8tev_part_shuffled)
             phi8tev_part_shuffled['phi'].to_csv(
-                    '/home/dgrfi/MEGA/dimuon/data/shuffled/phi/phi8' + label + '.txt',
+                    '/home/dgrfi/MEGA/dimuon/data/shuffled/phi/shuffphi8' + label + '.csv',
                     index=None, header=False)
             phi8tev_part_shuffled['eta'].to_csv(
-                    '/home/dgrfi/MEGA/dimuon/data/shuffled/eta/eta8' + label + '.txt',
+                    '/home/dgrfi/MEGA/dimuon/data/shuffled/eta/shuffeta8' + label + '.csv',
                     index=None, header=False)
 
-        phi7tev_shuffled = phi7tev.sample(frac=1)
-        phi7tev_shuffled['phi'].to_csv('/home/dgrfi/MEGA/dimuon/data/shuffled/phi7full.txt', index=None, header=False)
-        phi7tev_shuffled['eta'].to_csv('/home/dgrfi/MEGA/dimuon/data/shuffled/eta7full.txt', index=None, header=False)
-        phi8tev_shuffled = phi8tev.sample(frac=1)
-        phi8tev_shuffled['phi'].to_csv('/home/dgrfi/MEGA/dimuon/data/shuffled/phi8full.txt', index=None, header=False)
-        phi8tev_shuffled['eta'].to_csv('/home/dgrfi/MEGA/dimuon/data/shuffled/eta8full.txt', index=None, header=False)
+        # phi7tev_shuffled = phi7tev.sample(frac=1)
+        # phi7tev_shuffled['phi'].to_csv('/home/dgrfi/MEGA/dimuon/data/shuffled/phi7full.txt', index=None, header=False)
+        # phi7tev_shuffled['eta'].to_csv('/home/dgrfi/MEGA/dimuon/data/shuffled/eta7full.txt', index=None, header=False)
+        # phi8tev_shuffled = phi8tev.sample(frac=1)
+        # phi8tev_shuffled['phi'].to_csv('/home/dgrfi/MEGA/dimuon/data/shuffled/phi8full.txt', index=None, header=False)
+        # phi8tev_shuffled['eta'].to_csv('/home/dgrfi/MEGA/dimuon/data/shuffled/eta8full.txt', index=None, header=False)
 
 
