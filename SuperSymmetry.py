@@ -12,7 +12,7 @@ class SuperSymmetry:
         print("Start SS")
 
     def read_raw_and_write_momentums(self):
-        rawdf = pd.read_csv('/home/bhaduri/MEGA/supersymmetry/DiMu7Txyz1L.csv', delimiter=';')
+        rawdf = pd.read_csv('/home/dgrfi/MEGA/supersymmetry/DiMu7Txyz1L.csv', delimiter=';')
 
         momentum_df = rawdf[['Px', 'Py', 'Pz']]
 
@@ -71,11 +71,12 @@ class SuperSymmetry:
         col_co = momentum_Px_Py_Pz['Py']
         co_value = momentum_Px_Py_Pz['Pz']
 
-
         mat_coo = sparse.coo_matrix((co_value, (row_co, col_co)))
         print(mat_coo)
-        sdf = pd.SparseDataFrame(mat_coo)
-        print(sdf.shape)
+        sdf = pd.DataFrame.sparse.from_spmatrix(mat_coo)
+        # sdf = pd.SparseDataFrame(mat_coo)
+        # sdf.sparse.to_dense()
+        print(sdf[27628, 17391])
 
         # momentum_dense = pd.DataFrame(mat_coo.todense())
         # print(momentum_dense)
