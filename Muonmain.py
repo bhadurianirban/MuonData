@@ -12,4 +12,4 @@ from SuperSymmetry import SuperSymmetry
 # mm = Muonml()
 # mm.read_muon_data()
 ss = SuperSymmetry()
-ss.read_raw_and_write_momentums()
+ss.read_raw_and_write_SS_momentums()
