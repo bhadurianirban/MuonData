@@ -5,14 +5,29 @@ from scipy import stats
 import numpy as np
 from scipy import sparse
 
+
 class SuperSymmetry:
     scale_up_value = 10
+    dimuon_7tev_filename = '/home/dgrfi/MEGA/supersymmetry/DiMu7T_'
+    dimuon_8tev_filename = '/home/dgrfi/MEGA/supersymmetry/DiMu8T_'
+    file_ext = '.csv'
 
     def __init__(self):
         print("Start SS")
 
-    def read_raw_and_write_dimoun_momentums(self):
-        rawdf = pd.read_csv('/home/dgrfi/MEGA/supersymmetry/DiMu8Txyz1L.csv', delimiter=',')
+    def reorder_xyz (self, re_order_seq):
+        cols = ['Px', 'Py', 'Pz']
+        if (re_order_seq == 'xyz'):
+            cols = ['Px', 'Py', 'Pz']
+        elif (re_order_seq == 'yzx'):
+            cols = ['Py', 'Pz', 'Px']
+        elif (re_order_seq == 'xzy'):
+            cols = ['Px', 'Pz', 'Py']
+        else:
+            print('gheu gheu gheuuuuu')
+
+    def read_raw_and_write_dimoun_momentums(self, dimuon_xyz):
+        rawdf = pd.read_csv(dimuon_xyz)
         # Get only momentum columns
         momentum_Px_Py_Pz = rawdf[['Px', 'Py', 'Pz']]
 
@@ -24,6 +39,7 @@ class SuperSymmetry:
         # scale up Px and Py for matrix formation of x - y plane
         momentum_Px_Py_Pz['Px'] = momentum_Px_Py_Pz['Px'] * self.scale_up_value
         momentum_Px_Py_Pz['Py'] = momentum_Px_Py_Pz['Py'] * self.scale_up_value
+        momentum_Px_Py_Pz['Pz'] = momentum_Px_Py_Pz['Pz'] * self.scale_up_value
 
         # convert to integer x y values
         cols = ['Px', 'Py']
@@ -103,8 +119,8 @@ class SuperSymmetry:
         # ax = plt.axes(projection='3d')
         # ax.scatter3D(Px_value, Py_value, Pz_value)
         # plt.show()
-    def read_raw_and_write_SS_momentums(self):
-        rawdf = pd.read_csv('/home/dgrfi/MEGA/supersymmetry/ss90k.csv', delimiter=',')
+    def read_raw_and_write_SS_momentums(self, ss_raw_file, delim):
+        rawdf = pd.read_csv(ss_raw_file, delimiter=delim)
         # Get only momentum columns
         momentum_Px_Py_Pz = rawdf[['Px', 'Py', 'Pz']]
 
