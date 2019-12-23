@@ -11,10 +11,12 @@ from SuperSymmetry import SuperSymmetry
 # mg.sort_shuffle_divide_phi_by_eta()
 # mm = Muonml()
 # mm.read_muon_data()
-dimuon_raw_7TEV_file = '/home/dgrfi/MEGA/supersymmetry/DiMu7Txyz1L.csv'
-dimuon_raw_8TEV_file = '/home/dgrfi/MEGA/supersymmetry/DiMu8Txyz1L.csv'
-ss_raw_file = '/home/dgrfi/MEGA/supersymmetry/ss90k.csv'
-delim_comma = ','
-delim_semicolon = ';'
+run_env = 'bhaduri'
+dimuon_raw_7TEV_file = '/home/'+run_env+'/MEGA/supersymmetry/DiMu7Txyz1L.csv'
+dimuon_raw_8TEV_file = '/home/'+run_env+'/MEGA/supersymmetry/DiMu8Txyz1L.csv'
+ss_raw_file = '/home/'+run_env+'/MEGA/supersymmetry/ss90k.csv'
+
 ss = SuperSymmetry()
-ss.read_raw_and_write_SS_momentums()
+dimuon_files = ss.reorder_Px_Py_Pz(dimuon_raw_7TEV_file, 'DiMu7T_', ';')
+for dimuon_file in dimuon_files :
+    ss.read_raw_and_write_dimoun_momentums(dimuon_file)
