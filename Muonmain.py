@@ -2,6 +2,7 @@ from Mergeeta import Mergeeeta
 from Muonml import Muonml
 from SuperSymmetry import SuperSymmetry
 from SSShuffle import SSShuffle
+from SusmitaShuff import SusmitaShuff
 
 # mg = Mergeeeta()
 #mg.read_and_merge_phi()
@@ -24,7 +25,17 @@ from SSShuffle import SSShuffle
 # for dimuon_file in dimuon_files :
 #     ss.read_raw_and_write_dimoun_momentums(dimuon_file)
 
-run_env = 'bhaduri'
-dimuon_orig_file = '/home/'+run_env+'/MEGA/supersymmetry/Data/Dimoun_SS/DiMu7T_xy_z_out.csv'
-ssshuf = SSShuffle()
-ssshuf.shuffle_matrix(dimuon_orig_file)
+# run_env = 'dgrfi'
+# dimuon_orig_file_prefix = '/home/'+run_env+'/MEGA/supersymmetry/Data/Dimoun_SS/SS_'
+# dimuon_orig_file_suffixes = ['xy_z_out.csv','xz_y_out.csv','yz_x_out.csv']
+# dimuon_shuf_file_suffixes = ['xy_z_shuf.csv','xz_y_shuf.csv','yz_x_shuf.csv']
+#
+#
+# ssshuf = SSShuffle()
+# for i in range(3):
+#     dimuon_orig_file = dimuon_orig_file_prefix + dimuon_orig_file_suffixes[i]
+#     dimuon_shuf_file = dimuon_orig_file_prefix + dimuon_shuf_file_suffixes[i]
+#     ssshuf.shuffle_matrix(dimuon_orig_file, dimuon_shuf_file)
+
+sus_shuf = SusmitaShuff()
+sus_shuf.shuffle_z('/home/dgrfi/MEGA/supersymmetry/SSfiles/DiMu7xyz.csv')
