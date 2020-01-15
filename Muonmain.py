@@ -3,7 +3,7 @@ from Muonml import Muonml
 from SuperSymmetry import SuperSymmetry
 from SSShuffle import SSShuffle
 from SusmitaShuff import SusmitaShuff
-from BumbuSin import BumbuSin
+from SuperSymEtaPhi import SuperSymEtaPhi
 
 # mg = Mergeeeta()
 #mg.read_and_merge_phi()
@@ -46,5 +46,6 @@ from BumbuSin import BumbuSin
 # sus_shuf.shuffle_z('/home/bhaduri/MEGA/supersymmetry/SSfiles/ssyzx50.csv','/home/bhaduri/MEGA/supersymmetry/SSfiles/ssyzx50_shuf.csv')
 # sus_shuf.shuffle_z('/home/bhaduri/MEGA/supersymmetry/SSfiles/sszxy50.csv','/home/bhaduri/MEGA/supersymmetry/SSfiles/sszxy50_shuf.csv')
 
-bumbusin  = BumbuSin()
-bumbusin.plot_sine()
+sephi = SuperSymEtaPhi()
+# sephi.extraxt_eta_phi_dimuon('/home/bhaduri/MEGA/supersymmetry/Data/orig/DiMu7T50k_orig.csv')
+sephi.extraxt_eta_phi_dimuon('/home/bhaduri/MEGA/supersymmetry/Data/orig/ss2010B_10eod.csv')
