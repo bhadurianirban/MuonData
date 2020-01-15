@@ -99,8 +99,8 @@ class SuperSymmetry:
     def plt_3d_momentum(self, momentum_Px_Py_Pz):
         fig = plt.figure()
         ax = plt.axes(projection='3d')
-        Px_value = momentum_Px_Py_Pz['Px']
-        Py_value = momentum_Px_Py_Pz['Py']
-        Pz_value = momentum_Px_Py_Pz['Pz']
+        Px_value = momentum_Px_Py_Pz['X']
+        Py_value = momentum_Px_Py_Pz['Y']
+        Pz_value = momentum_Px_Py_Pz['Z']
         ax.scatter3D(Px_value, Py_value, Pz_value)
         plt.show()

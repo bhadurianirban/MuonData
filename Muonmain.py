@@ -3,6 +3,7 @@ from Muonml import Muonml
 from SuperSymmetry import SuperSymmetry
 from SSShuffle import SSShuffle
 from SusmitaShuff import SusmitaShuff
+from BumbuSin import BumbuSin
 
 # mg = Mergeeeta()
 #mg.read_and_merge_phi()
@@ -37,5 +38,13 @@ from SusmitaShuff import SusmitaShuff
 #     dimuon_shuf_file = dimuon_orig_file_prefix + dimuon_shuf_file_suffixes[i]
 #     ssshuf.shuffle_matrix(dimuon_orig_file, dimuon_shuf_file)
 
-sus_shuf = SusmitaShuff()
-sus_shuf.shuffle_z('/home/dgrfi/MEGA/supersymmetry/SSfiles/DiMu7xyz.csv')
+# sus_shuf = SusmitaShuff()
+# sus_shuf.shuffle_z('/home/bhaduri/MEGA/supersymmetry/SSfiles/DiMu7xyz.csv','/home/bhaduri/MEGA/supersymmetry/SSfiles/DiMu7xyz_shuf.csv')
+# sus_shuf.shuffle_z('/home/bhaduri/MEGA/supersymmetry/SSfiles/DiMu7yzx.csv','/home/bhaduri/MEGA/supersymmetry/SSfiles/DiMu7yzx_shuf.csv')
+# sus_shuf.shuffle_z('/home/bhaduri/MEGA/supersymmetry/SSfiles/DiMu7zxy.csv','/home/bhaduri/MEGA/supersymmetry/SSfiles/DiMu7zxy_shuf.csv')
+# sus_shuf.shuffle_z('/home/bhaduri/MEGA/supersymmetry/SSfiles/ssxyz50.csv','/home/bhaduri/MEGA/supersymmetry/SSfiles/ssxyz50_shuf.csv')
+# sus_shuf.shuffle_z('/home/bhaduri/MEGA/supersymmetry/SSfiles/ssyzx50.csv','/home/bhaduri/MEGA/supersymmetry/SSfiles/ssyzx50_shuf.csv')
+# sus_shuf.shuffle_z('/home/bhaduri/MEGA/supersymmetry/SSfiles/sszxy50.csv','/home/bhaduri/MEGA/supersymmetry/SSfiles/sszxy50_shuf.csv')
+
+bumbusin  = BumbuSin()
+bumbusin.plot_sine()
