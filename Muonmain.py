@@ -5,6 +5,9 @@ from SSShuffle import SSShuffle
 from SusmitaShuff import SusmitaShuff
 from SuperSymEtaPhi import SuperSymEtaPhi
 from DimuonCharged import DimuonCharged
+from EPJA import EPJA
+from HurstForQ import HurstForQ
+from Visi3D import Visi3D
 
 # mg = Mergeeeta()
 #mg.read_and_merge_phi()
@@ -51,5 +54,12 @@ from DimuonCharged import DimuonCharged
 # sephi.extraxt_eta_phi_dimuon('/home/bhaduri/MEGA/supersymmetry/Data/orig/DiMu7T50k_orig.csv')
 # sephi.extraxt_eta_phi_dimuon('/home/bhaduri/MEGA/supersymmetry/Data/orig/ss2010B_10eod.csv')
 
-dimcharged = DimuonCharged()
-dimcharged.extract_dimuon_charged('/home/bhaduri/MEGA/chargedependence/data/DiMu8Txyz1L.csv','8tev')
+# dimcharged = DimuonCharged()
+# dimcharged.extract_dimuon_charged('/home/bhaduri/MEGA/chargedependence/data/DiMu8Txyz1L.csv','8tev')
+
+# epja = EPJA()
+# epja.epja_shuffle()
+# hq = HurstForQ()
+# hq.calc_hurst_for_a_folder('/home/bhaduri/MEGA/supersymmetry/Results/Results_q02')
+v3d = Visi3D()
+v3d.draw_3D_Visi()
