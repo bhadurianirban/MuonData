@@ -32,7 +32,7 @@ class Visi3D:
         line_x = momentum_Px_Py_Pz['X']
         line_y = momentum_Px_Py_Pz['Y']
         line_z = momentum_Px_Py_Pz['Z']
-        ax.plot(line_x,line_y,line_z)
+        ax.plot(line_x,line_y,line_z,color='red')
         plt.show()
         # x = [1, 2, 3]  # x coordinates of each bar
         # y = [1, 2, 3]  # y coordinates of each bar
